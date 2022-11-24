@@ -2041,6 +2041,22 @@ app.get("/userEthBal", async (req, res) => {
   }
 });
 
+app.post("/userEthBal", async (req, res) => {
+  try {
+    let { userAdd } = req.body;
+    let balance = await provider.getBalance(userAdd);
+    let bal = ethers.utils.formatEther(balance);
+    res.status(200).json({
+      success: true,
+      message: "your ether balance is " + bal,
+      data: bal,
+    });
+    return ethers.utils.formatEther(balance);
+  } catch (error) {
+    throw new Error(error);
+  }
+});
+
 app.post("/addPlusInvestors", async (req, res) => {
   try {
     let { ownerAdd, userAdd } = req.body;
