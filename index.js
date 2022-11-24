@@ -2041,7 +2041,7 @@ app.get("/userEthBal", async (req, res) => {
   }
 });
 
-app.post("/userEthBal", async (req, res) => {
+app.post("/userEthBalance", async (req, res) => {
   try {
     let { userAdd } = req.body;
     let balance = await provider.getBalance(userAdd);
